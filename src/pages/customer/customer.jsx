@@ -11,6 +11,7 @@ import {
 } from "antd";
 import { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
+import BASE_URL from "../../api";
 import dayjs from "dayjs";
 
 const { RangePicker } = DatePicker;
@@ -25,7 +26,7 @@ const Customers = () => {
 
   // 🔥 LOAD DATA (API VERSION)
   useEffect(() => {
-    fetch("http://localhost:5000/api/daily-chart")
+    fetch("${BASE_URL}/api/daily-chart")
       .then((res) => res.json())
       .then((parsed) => {
         let finalData = [];
@@ -79,7 +80,7 @@ const Customers = () => {
   // 🔥 DELETE (API VERSION)
   const handleDelete = async (record) => {
     await fetch(
-      `http://localhost:5000/api/daily-chart/${record.parentId}`,
+      `${BASE_URL}/api/daily-chart/${record.parentId}`,
       {
         method: "DELETE",
       }
@@ -103,7 +104,7 @@ const Customers = () => {
     const values = await form.validateFields();
 
     await fetch(
-      `http://localhost:5000/api/daily-chart/${editing.parentId}`,
+      `${BASE_URL}/api/daily-chart/${editing.parentId}`,
       {
         method: "PUT",
         headers: {

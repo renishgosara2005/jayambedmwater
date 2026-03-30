@@ -11,6 +11,7 @@ import {
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import jsPDF from "jspdf";
+import BASE_URL from "../../api";
 
 const { RangePicker } = DatePicker;
 
@@ -24,7 +25,7 @@ const Shopping = () => {
 
   // FETCH DATA
   const fetchData = async () => {
-    const res = await fetch("http://localhost:5000/api/shopping");
+    const res = await fetch("${BASE_URL}/api/shopping");
     const result = await res.json();
     setData(result);
   };
@@ -39,7 +40,7 @@ const Shopping = () => {
     const values = await form.validateFields();
 
     if (editing) {
-      await fetch(`http://localhost:5000/api/shopping/${editing._id}`, {
+      await fetch(`${BASE_URL}/api/shopping/${editing._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -50,7 +51,7 @@ const Shopping = () => {
         }),
       });
     } else {
-      await fetch("http://localhost:5000/api/shopping", {
+      await fetch("${BASE_URL}/api/shopping", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +73,7 @@ const Shopping = () => {
 
   // DELETE
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/shopping/${id}`, {
+    await fetch(`${BASE_URL}/api/shopping/${id}`, {
       method: "DELETE",
     });
 

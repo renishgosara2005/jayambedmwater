@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import dayjs from "dayjs";
+import BASE_URL from "../../api";
 
 const { Title, Text } = Typography;
 
@@ -29,7 +30,7 @@ const EmployeeDetail = () => {
   // 🔥 FETCH DATA
   const fetchData = async () => {
     const res = await fetch(
-      `http://localhost:5000/api/employee/${state._id}`
+      `${BASE_URL}/api/employee/${state._id}`
     );
     const data = await res.json();
     setRecords(data);
@@ -50,7 +51,7 @@ const EmployeeDetail = () => {
 
       if (exists) return;
 
-      await fetch("http://localhost:5000/api/employee", {
+      await fetch("${BASE_URL}/api/employee", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +78,7 @@ const EmployeeDetail = () => {
   const handleAdd = async () => {
     if (!amount) return;
 
-    await fetch("http://localhost:5000/api/employee", {
+    await fetch("${BASE_URL}/api/employee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +99,7 @@ const EmployeeDetail = () => {
 
   // 🔥 DELETE
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/employee/${id}`, {
+    await fetch(`${BASE_URL}/api/employee/${id}`, {
       method: "DELETE",
     });
 
@@ -144,7 +145,7 @@ const EmployeeDetail = () => {
   // 🔥 WATER API (IMPORTANT)
   const getWaterByDate = async (date) => {
     const res = await fetch(
-      `http://localhost:5000/api/employee/water/by-date?date=${date.format(
+      `${BASE_URL}/api/employee/water/by-date?date=${date.format(
         "DD-MM-YYYY"
       )}&name=${state.name}`
     );

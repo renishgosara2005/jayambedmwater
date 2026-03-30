@@ -12,6 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import dayjs from "dayjs";
+import BASE_URL from "../../api";
 
 const Expense = () => {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ const Expense = () => {
 
   // ✅ FETCH DATA
   const fetchData = async () => {
-    const res = await fetch("http://localhost:5000/api/expense");
+    const res = await fetch("${BASE_URL}/api/expense");
     const result = await res.json();
     setData(result);
   };
@@ -37,7 +38,7 @@ const Expense = () => {
   const handleAdd = async () => {
     const values = await form.validateFields();
 
-    await fetch("http://localhost:5000/api/expense", {
+    await fetch("${BASE_URL}/api/expense", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +58,7 @@ const Expense = () => {
 
   // ✅ DELETE
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/expense/${id}`, {
+    await fetch(`${BASE_URL}/api/expense/${id}`, {
       method: "DELETE",
     });
 

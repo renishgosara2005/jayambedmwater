@@ -11,8 +11,9 @@ import {
 } from "antd";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
+import BASE_URL from "../../api";
 
-const API = "http://localhost:5000/api/customer";
+const API = "${BASE_URL}/api/customer";
 
 const DailyChart = () => {
   const [data, setData] = useState([]);

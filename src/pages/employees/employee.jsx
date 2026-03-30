@@ -1,6 +1,7 @@
 import { Card, Table, Button, Modal, Form, Input } from "antd";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../api";
 
 const Employee = () => {
   const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ const Employee = () => {
 
   // ✅ FETCH
   const fetchData = async () => {
-    const res = await fetch("http://localhost:5000/api/employee");
+    const res = await fetch("${BASE_URL}/api/employee");
     const result = await res.json();
 
     console.log("EMP 👉", result);
@@ -27,7 +28,7 @@ const Employee = () => {
   const handleAdd = async () => {
     const values = await form.validateFields();
 
-    await fetch("http://localhost:5000/api/employee", {
+    await fetch("${BASE_URL}/api/employee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +48,7 @@ const Employee = () => {
 
   // ✅ DELETE
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/employee/${id}`, {
+    await fetch(`${BASE_URL}/api/employee/${id}`, {
       method: "DELETE",
     });
 

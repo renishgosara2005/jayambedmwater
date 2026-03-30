@@ -1,6 +1,7 @@
 import { Card, Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../../api";
 
 const ForgotPassword = () => {
   const [form] = Form.useForm();
@@ -12,7 +13,7 @@ const ForgotPassword = () => {
 
       // 🔥 API CALL
       const res = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        "${BASE_URL}/api/auth/forgot-password",
         values
       );
 

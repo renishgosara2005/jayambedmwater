@@ -10,6 +10,7 @@ import {
   Col,
 } from "antd";
 import { useState, useEffect } from "react";
+import BASE_URL from "../../api";
 
 const CosticAcid = () => {
   const [costic, setCostic] = useState([]);
@@ -28,7 +29,7 @@ const CosticAcid = () => {
   }, []);
 
   const fetchData = async () => {
-    const res = await fetch("http://localhost:5000/api/chemical");
+    const res = await fetch("${BASE_URL}/api/chemical");
     const data = await res.json();
 
     setCostic(data.filter((i) => i.type === "costic"));
@@ -39,7 +40,7 @@ const CosticAcid = () => {
   const handleAddCostic = async () => {
     const values = await formCostic.validateFields();
 
-    await fetch("http://localhost:5000/api/chemical", {
+    await fetch("${BASE_URL}/api/chemical", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +62,7 @@ const CosticAcid = () => {
   const handleAddAcid = async () => {
     const values = await formAcid.validateFields();
 
-    await fetch("http://localhost:5000/api/chemical", {
+    await fetch("${BASE_URL}/api/chemical", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +82,7 @@ const CosticAcid = () => {
 
   // ✅ DELETE
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/chemical/${id}`, {
+    await fetch(`${BASE_URL}/api/chemical/${id}`, {
       method: "DELETE",
     });
     fetchData();

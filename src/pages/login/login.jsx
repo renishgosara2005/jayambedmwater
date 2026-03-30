@@ -1,6 +1,7 @@
 import { Card, Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../../api";
 
 const Login = () => {
   const [form] = Form.useForm();
@@ -12,7 +13,7 @@ const Login = () => {
 
       // ✅ API CALL
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "${BASE_URL}/api/auth/login",
         values,
       );
 

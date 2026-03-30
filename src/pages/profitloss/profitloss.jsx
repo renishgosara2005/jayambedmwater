@@ -10,6 +10,7 @@ import {
 } from "antd";
 import { useState, useEffect } from "react";
 import jsPDF from "jspdf";
+import BASE_URL from "../../api";
 
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
@@ -26,7 +27,7 @@ const ProfitLoss = () => {
   });
 
   const fetchData = async () => {
-    const res = await fetch("http://localhost:5000/api/profit");
+    const res = await fetch("${BASE_URL}/api/profit");
     const result = await res.json();
 
     console.log("PROFIT 👉", result);
